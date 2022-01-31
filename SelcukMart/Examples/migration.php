@@ -18,24 +18,17 @@ $sql = "SELECT
        b,
        c.s,
   gg.*, 
-  so.sube_id, 
-  so.ana_yetki_id, 
-  so.ad AS KUL_AD, 
-  so.soyad AS KUL_SOYAD, 
-  os.isim ODEME_SECENEKLERI, 
-  nes2.isim AS KARGO_FIRMASI, 
-  ei.id AS INVOICE_ID, 
-  ei.parasut_fatura_id, 
-  ei.e_fatura_or_arsiv, 
-  ei.parasut_e_fatura_id, 
+  so.branch_id, 
+  so.auth_id, 
+  so.name AS USER_NAME, 
+  so.surname AS USER_SURNAME, 
+  os.name PAYMENT_OPTION,  
+  ei.id AS INVOICE_ID,  
   ei.trackable_job_id, 
   ei.status, 
   ei.proccess_status, 
   ei.sent, 
-  ei.pdf_url, 
-  ei.kargo_gonderildi, 
-  ei.kargo_firmasina_bildirildi, 
-  ei.bildirim_tarihi 
+  ei.pdf_url 
 FROM 
   tes_gelir_gider AS gg 
       LEFT JOIN tes_nesne AS nes2 ON nes2.id = gg.kargo_firma_id 

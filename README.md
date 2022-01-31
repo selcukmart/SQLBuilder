@@ -49,7 +49,7 @@ $sql_generator = [
         'branch_id',
         'auth_id',
         'name AS USER_NAME',
-        'surname AS USER_surNAME',
+        'surname AS USER_SURNAME',
         ],
         'c' => 'name PAYMENT_OPTION',
         'd' => 'name AS CARGO_FIRM',

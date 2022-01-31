@@ -12,14 +12,19 @@
   "autoload": {
     "psr-4": {
       "SelcukMart\\": "SelcukMart/"
-    }
+    },
+    "files": [
+      "SelcukMart/helpers.php"
+    ]
   },
   "require": {
-    "php": "^7.1 || ^8.0"
-  },
-  "require-dev": {
+    "php": "^7.1 || ^8.0",
     "brick/varexporter": "~0.3.5",
     "jdorn/sql-formatter": "~1.2.16",
-    "phpmyadmin/sql-parser": "*"
+    "phpmyadmin/sql-parser": "~5.5.0"
+  }
+  ,
+  "require-dev": {
+    "roave/security-advisories": "dev-latest"
   }
 }

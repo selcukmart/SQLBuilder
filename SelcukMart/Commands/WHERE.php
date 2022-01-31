@@ -12,17 +12,10 @@ use SelcukMart\SQLBuilder;
 use SelcukMart\Tools\SQLToolsTrait;
 use SelcukMart\SQLOperations\SQLBuilderHook;
 
-class WHERE implements CommandsInterface
+class WHERE extends AbstractCommands implements CommandsInterface
 {
-    use CommandsTrait;
+    
     use SQLToolsTrait;
-
-    private $SQLBuilder;
-
-    public function __construct(SQLBuilder $SQLBuilder)
-    {
-        $this->SQLBuilder = $SQLBuilder;
-    }
 
     public function build(array $options)
     {
@@ -32,7 +25,7 @@ class WHERE implements CommandsInterface
         $this->hook_core_key = 'WHERE';
         $this->i = 0;
         $this->total = _sizeof($options);
-        if ($this->total > 0 && $this->SQLBuilder->getDepth() == 1) {
+        if ($this->total > 0 && $this->SQLBuilder->getDepth() === 1) {
             $this->SQLBuilder->setHasWhere(true);
         }
         $this->SQLBuilderHook = new SQLBuilderHook($this->SQLBuilder->getId());
@@ -65,8 +58,5 @@ class WHERE implements CommandsInterface
         $this->setOutput($output);
     }
 
-    public function __destruct()
-    {
-        // TODO: Implement __destruct() method.
-    }
+    
 }

@@ -10,17 +10,8 @@ namespace SelcukMart\Commands;
 
 use SelcukMart\SQLBuilder;
 
-class JOIN implements CommandsInterface
+class JOIN extends AbstractCommands implements CommandsInterface
 {
-    use CommandsTrait;
-
-    private $SQLBuilder;
-
-    public function __construct(SQLBuilder $SQLBuilder)
-    {
-        $this->SQLBuilder = $SQLBuilder;
-    }
-
     public function build(array $options)
     {
         $output = ' JOIN ';
@@ -30,8 +21,5 @@ class JOIN implements CommandsInterface
         $this->setOutput($output);
     }
 
-    public function __destruct()
-    {
-        // TODO: Implement __destruct() method.
-    }
+    
 }

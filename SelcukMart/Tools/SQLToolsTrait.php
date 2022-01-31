@@ -45,7 +45,7 @@ trait SQLToolsTrait
             $this->setOutput($option);
             return $option;
         }
-        foreach ($option as $index => $item) {
+        foreach ($option as $item) {
             if (is_array($item)) {
 
                 $this->SQLBuilder->build($item);
@@ -56,7 +56,7 @@ trait SQLToolsTrait
                 $index = 0;
                 foreach ($parser->list->tokens as $token) {
                     if ($token->type == 0) {
-                        if (!empty($this->table_as) && !preg_match('/\./', $previous_token)) {
+                        if (!empty($this->table_as) && false === strpos($previous_token, ".")) {
                             $statement = $this->table_as . '.' . $token->token;
                             //c($statement);
                             $arr[] = $statement;

@@ -11,16 +11,8 @@ namespace SelcukMart\Commands;
 use SelcukMart\SQLBuilder;
 use SelcukMart\SQLOperations\SQLBuilderHook;
 
-class SET implements CommandsInterface
+class SET extends AbstractCommands implements CommandsInterface
 {
-    use CommandsTrait;
-
-    private $SQLBuilder;
-
-    public function __construct(SQLBuilder $SQLBuilder)
-    {
-        $this->SQLBuilder = $SQLBuilder;
-    }
 
     public function build(array $options)
     {
@@ -60,23 +52,11 @@ class SET implements CommandsInterface
 
             $this->total = _sizeof($options);
             foreach ($options as $index => $option) {
-                $this->i++;
-                $this->output = '';
-
-                if (is_numeric($index) && is_array($option)) {
-                    $this->SQLBuilder->build($option);
-                } else {
-                    if (is_string($index) || is_array($option)) {
-                        $this->output = $this->concateTheCommas($index, $option);
-                    } else {
-                        $this->output = $option;
-                    }
-                }
-                if ($this->total != $this->i) {
+                $this->buildCore($index, $option);
+                if ($this->total !== $this->i) {
                     $this->output .= ', ';
                 }
                 $this->setOutput($this->output);
-
             }
         }
 
@@ -92,8 +72,5 @@ class SET implements CommandsInterface
 
     }
 
-    public function __destruct()
-    {
-        // TODO: Implement __destruct() method.
-    }
+    
 }

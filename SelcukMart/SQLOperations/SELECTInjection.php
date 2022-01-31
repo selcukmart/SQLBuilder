@@ -15,12 +15,12 @@ class SELECTInjection
 
     public function __construct(array $sql)
     {
-        $this->sql;
+        $this->sql=$sql;
     }
 
     public function inject($sql_part)
     {
-        if (isset($this->sql[0]['type']) && $this->sql[0]['type'] == 'SELECT') {
+        if (isset($this->sql[0]['type']) && $this->sql[0]['type'] === 'SELECT') {
             $this->sql[0][] = $sql_part;
         } elseif (isset($this->sql['SELECT'])) {
             $this->sql['SELECT'][] = $sql_part;
@@ -31,6 +31,6 @@ class SELECTInjection
 
     public function __destruct()
     {
-        // TODO: Implement __destruct() method.
+        
     }
 }

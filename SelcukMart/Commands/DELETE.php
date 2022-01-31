@@ -11,16 +11,8 @@ namespace SelcukMart\Commands;
 use SelcukMart\SQLBuilder;
 use SelcukMart\SQLOperations\SQLBuilderHook;
 
-class DELETE implements CommandsInterface
+class DELETE extends AbstractCommands implements CommandsInterface
 {
-    use CommandsTrait;
-
-    private $SQLBuilder;
-
-    public function __construct(SQLBuilder $SQLBuilder)
-    {
-        $this->SQLBuilder = $SQLBuilder;
-    }
 
     public function build(array $options)
     {
@@ -36,21 +28,8 @@ class DELETE implements CommandsInterface
         $this->setOutput($output);
 
         foreach ($options as $index => $option) {
-            $this->output = '';
-            $this->i++;
-
-            if (is_numeric($index) && is_array($option)) {
-                $this->SQLBuilder->build($option);
-            } else {
-                if (is_string($index) || is_array($option)) {
-                    $this->output = $this->concateTheCommas($index, $option);
-                } else {
-                    $this->output = $option;
-                }
-            }
-
+            $this->buildCore($index, $option);
             $this->setOutput($this->output);
-
         }
 
         $this->position = 'PREPEND';
@@ -59,8 +38,5 @@ class DELETE implements CommandsInterface
 
     }
 
-    public function __destruct()
-    {
-        // TODO: Implement __destruct() method.
-    }
+    
 }

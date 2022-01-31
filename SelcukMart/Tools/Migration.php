@@ -11,21 +11,24 @@ namespace SelcukMart\Tools;
 class Migration
 {
 
+    const MIGRATION_DIR = '';
+
     public function __construct()
     {
     }
 
     public function scan()
     {
-        $dir = ADMIN_DIR;
+        $dir = self::MIGRATION_DIR;
         $lists = scandir($dir);
         foreach ($lists as $index => $list) {
-            $list = ADMIN_DIR . '/' . $list;
+            $list = self::MIGRATION_DIR . '/' . $list;
             if (is_dir($list)) {
                 $files = scandir($list);
-                foreach ($files as $index => $file) {
-                    $sql_file = $list . '/sql.php';
-                    if (file_exists($sql_file)) {
+                foreach ($files as $file) {
+
+                    $sql_file = $list . '/' . $file;
+                    if (is_file($sql_file)) {
                         c($sql_file);
                     }
                 }
@@ -45,6 +48,6 @@ class Migration
 
     public function __destruct()
     {
-        // TODO: Implement __destruct() method.
+
     }
 }

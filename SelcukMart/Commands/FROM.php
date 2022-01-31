@@ -11,16 +11,8 @@ namespace SelcukMart\Commands;
 use SelcukMart\SQLBuilder;
 use SelcukMart\SQLOperations\SQLBuilderHook;
 
-class FROM implements CommandsInterface
+class FROM extends AbstractCommands implements CommandsInterface
 {
-    use CommandsTrait;
-
-    private $SQLBuilder;
-
-    public function __construct(SQLBuilder $SQLBuilder)
-    {
-        $this->SQLBuilder = $SQLBuilder;
-    }
 
     public function build(array $options)
     {
@@ -55,8 +47,5 @@ class FROM implements CommandsInterface
 
     }
 
-    public function __destruct()
-    {
-        // TODO: Implement __destruct() method.
-    }
+    
 }

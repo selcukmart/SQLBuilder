@@ -7,10 +7,8 @@
 
 function _sizeof($data): int
 {
-    if (PHP_VERSION_ID > 70300) {
-        if (is_countable($data)) {
-            return count($data);
-        }
+    if ((PHP_VERSION_ID > 70300) && is_countable($data)) {
+        return count($data);
     }
     return is_array($data) ? count($data) : false;
 }
@@ -18,30 +16,26 @@ function _sizeof($data): int
 function c($v, $return = false)
 {
     if ($return) {
-        $cikti = '<pre>';
+        $output = '<pre>';
     } else {
         echo '<pre>';
     }
     if (is_array($v) || is_object($v)) {
         if ($return) {
-            $cikti .= print_r($v, true);
+            $output .= print_r($v, true);
         } else {
-            print_r($v, false);
+            print_r($v);
         }
+    } elseif ($return) {
+        $output .= $v;
+    } elseif (is_bool($v)) {
+        var_dump($v);
     } else {
-        if ($return) {
-            $cikti .= $v;
-        } else {
-            if (is_bool($v)) {
-                var_dump($v);
-            } else {
-                echo $v;
-            }
-        }
+        echo $v;
     }
     if ($return) {
-        $cikti .= '</pre>';
-        return $cikti;
+        $output .= '</pre>';
+        return $output;
     }
 
     echo '</pre>';

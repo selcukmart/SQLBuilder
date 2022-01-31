@@ -10,16 +10,8 @@ namespace SelcukMart\Commands;
 
 use SelcukMart\SQLBuilder;
 
-class LEFTJOIN implements CommandsInterface
+class LEFTJOIN extends AbstractCommands implements CommandsInterface
 {
-    use CommandsTrait;
-
-    private $SQLBuilder;
-
-    public function __construct(SQLBuilder $SQLBuilder)
-    {
-        $this->SQLBuilder = $SQLBuilder;
-    }
 
     public function build(array $options)
     {
@@ -30,8 +22,5 @@ class LEFTJOIN implements CommandsInterface
         $this->setOutput($output);
     }
 
-    public function __destruct()
-    {
-        // TODO: Implement __destruct() method.
-    }
+    
 }

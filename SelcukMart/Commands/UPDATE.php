@@ -12,17 +12,11 @@ use SelcukMart\SQLBuilder;
 use SelcukMart\Tools\SQLToolsTrait;
 use SelcukMart\SQLOperations\SQLBuilderHook;
 
-class UPDATE implements CommandsInterface
+class UPDATE extends AbstractCommands implements CommandsInterface
 {
-    use CommandsTrait;
+    
     use SQLToolsTrait;
 
-    private $SQLBuilder;
-
-    public function __construct(SQLBuilder $SQLBuilder)
-    {
-        $this->SQLBuilder = $SQLBuilder;
-    }
 
     public function build(array $options)
     {
@@ -80,8 +74,5 @@ class UPDATE implements CommandsInterface
         $this->setOutput($output);
     }
 
-    public function __destruct()
-    {
-        // TODO: Implement __destruct() method.
-    }
+    
 }

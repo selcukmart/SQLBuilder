@@ -10,17 +10,9 @@ namespace SelcukMart\Commands;
 
 use SelcukMart\SQLBuilder;
 
-class INNERJOIN implements CommandsInterface
+class INNERJOIN extends AbstractCommands implements CommandsInterface
 {
-    use CommandsTrait;
-
-    private $SQLBuilder;
-
-    public function __construct(SQLBuilder $SQLBuilder)
-    {
-        $this->SQLBuilder = $SQLBuilder;
-    }
-
+    
     public function build(array $options)
     {
         $output = ' INNER JOIN ';
@@ -30,8 +22,5 @@ class INNERJOIN implements CommandsInterface
         $this->setOutput($output);
     }
 
-    public function __destruct()
-    {
-        // TODO: Implement __destruct() method.
-    }
+    
 }

@@ -11,16 +11,8 @@ namespace SelcukMart\Commands;
 use SelcukMart\SQLBuilder;
 use SelcukMart\SQLOperations\SQLBuilderHook;
 
-class LIMIT implements CommandsInterface
+class LIMIT extends AbstractCommands implements CommandsInterface
 {
-    use CommandsTrait;
-
-    private $SQLBuilder;
-
-    public function __construct(SQLBuilder $SQLBuilder)
-    {
-        $this->SQLBuilder = $SQLBuilder;
-    }
 
     public function build(array $options)
     {
@@ -54,8 +46,5 @@ class LIMIT implements CommandsInterface
         $this->setOutput($output);
     }
 
-    public function __destruct()
-    {
-        // TODO: Implement __destruct() method.
-    }
+    
 }

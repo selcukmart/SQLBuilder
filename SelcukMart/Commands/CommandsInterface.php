@@ -13,7 +13,6 @@ use SelcukMart\SQLBuilder;
 interface CommandsInterface
 {
 
-
     public function __construct(SQLBuilder $SQLBuilder);
 
     public function build(array $options);

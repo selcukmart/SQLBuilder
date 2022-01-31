@@ -35,7 +35,7 @@ class JoinOperations
                 unset($option['type']);
             }
             $operation = strtolower($operation);
-            if ($operation == 'where') {
+            if ($operation === 'where') {
                 $this->setOutput(' AND ');
                 $this->$operation($option);
             } else {
@@ -91,8 +91,5 @@ class JoinOperations
         return $this->output;
     }
 
-    public function __destruct()
-    {
-        // TODO: Implement __destruct() method.
-    }
+    
 }

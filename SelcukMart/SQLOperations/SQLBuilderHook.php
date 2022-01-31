@@ -88,7 +88,5 @@ class SQLBuilderHook
 
     public function __destruct()
     {
-//        global $sql_builder_hook_values_array;
-//        c($sql_builder_hook_values_array);
     }
 }

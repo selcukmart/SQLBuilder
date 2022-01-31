@@ -11,16 +11,13 @@ namespace SelcukMart\Commands;
 use SelcukMart\SQLBuilder;
 use SelcukMart\SQLOperations\SQLBuilderHook;
 
-class ORDERBY implements CommandsInterface
+class ORDERBY extends AbstractCommands implements CommandsInterface
 {
-    use CommandsTrait;
+    
 
-    private $SQLBuilder;
+    
 
-    public function __construct(SQLBuilder $SQLBuilder)
-    {
-        $this->SQLBuilder = $SQLBuilder;
-    }
+    
 
     public function build(array $options)
     {
@@ -44,20 +41,9 @@ class ORDERBY implements CommandsInterface
         $this->setOutput($this->output);
 
         foreach ($options as $index => $option) {
-            $this->output = '';
-            $this->i++;
-
-            if (is_numeric($index) && is_array($option)) {
-                $this->SQLBuilder->build($option);
-            }else {
-                if (is_string($index) || is_array($option)) {
-                    $this->output = $this->concateTheCommas($index, $option);
-                } else {
-                    $this->output = $option;
-                }
-            }
+            $this->buildCore($index, $option);
             if (!empty($this->output)) {
-                if ($this->total != $this->i) {
+                if ($this->total !== $this->i) {
                     $this->output .= ', ';
                 }
                 $this->setOutput($this->output);
@@ -66,17 +52,12 @@ class ORDERBY implements CommandsInterface
 
         $this->position = 'PREPEND';
         $output = $this->hookGet();
-        if (!empty($output)) {
-            if ($this->total > 0) {
-                $output = ', ' . $output;
-            }
+        if (!empty($output) && $this->total > 0) {
+            $output = ', ' . $output;
         }
 
         $this->setOutput($output);
     }
 
-    public function __destruct()
-    {
-        // TODO: Implement __destruct() method.
-    }
+    
 }

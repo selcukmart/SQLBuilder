@@ -18,17 +18,17 @@ trait CommandsTrait
         $output = '';
     }
 
-    private function hookGet()
+    protected function hookGet()
     {
         $output = '';
-        if ($this->SQLBuilder->getDepth() == 1) {
+        if ($this->SQLBuilder->getDepth() === 1) {
             $hook_key = SQLBuilderHook::key($this->hook_core_key, $this->position, $this->SQLBuilder->getId());
             $output = $this->SQLBuilderHook->get($hook_key);
         }
         return $output;
     }
 
-    private function concateTheCommas($index, $option)
+    protected function concateTheCommas($index, $option): string
     {
         $output = '';
         if (is_array($option)) {
@@ -41,7 +41,7 @@ trait CommandsTrait
         foreach ($columns as $column) {
             $i++;
             $column = trim($column);
-            if (preg_match('/\./', $column)) {
+            if (false !== strpos($column, ".")) {
                 $output .= $column;
             } else {
                 $output .= $index . '.' . $column;

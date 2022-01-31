@@ -174,7 +174,7 @@ class SQLBuilder
 
     public function getOutputHighlighted(): string
     {
-        return $this->getOutputFormatted(true);
+        return $this->getOutputFormatted();
     }
 
 
@@ -275,6 +275,6 @@ class SQLBuilder
 
     public function __destruct()
     {
-        // TODO: Implement __destruct() method.
+        
     }
 }

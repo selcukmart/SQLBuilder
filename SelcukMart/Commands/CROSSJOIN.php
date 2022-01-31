@@ -10,28 +10,16 @@ namespace SelcukMart\Commands;
 
 use SelcukMart\SQLBuilder;
 
-class CROSSJOIN implements CommandsInterface
+class CROSSJOIN extends AbstractCommands implements CommandsInterface
 {
-    use CommandsTrait;
-
-    private $SQLBuilder;
-
-    public function __construct(SQLBuilder $SQLBuilder)
-    {
-        $this->SQLBuilder = $SQLBuilder;
-    }
-
     public function build(array $options)
     {
         $output = ' CROSS JOIN ';
-       $this->setOutput($output);
+        $this->setOutput($output);
         $join = new JoinOperations($options, $this->SQLBuilder);
         $output = $join->build();
         $this->setOutput($output);
     }
 
-    public function __destruct()
-    {
-        // TODO: Implement __destruct() method.
-    }
+
 }

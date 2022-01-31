@@ -12,17 +12,14 @@ use SelcukMart\SQLBuilder;
 use SelcukMart\Tools\SQLToolsTrait;
 use SelcukMart\SQLOperations\SQLBuilderHook;
 
-class INSERT implements CommandsInterface
+class INSERT extends AbstractCommands implements CommandsInterface
 {
-    use CommandsTrait;
+    
     use SQLToolsTrait;
 
-    private $SQLBuilder;
+    
 
-    public function __construct(SQLBuilder $SQLBuilder)
-    {
-        $this->SQLBuilder = $SQLBuilder;
-    }
+    
 
     public function build(array $options)
     {
@@ -44,20 +41,16 @@ class INSERT implements CommandsInterface
             $this->output = '';
             $this->i++;
 
-
-
             $operation = $index;
             if (method_exists($this, $operation)) {
                 $this->$operation($option);
             } else {
                 if (is_numeric($index) && is_array($option)) {
                     $this->SQLBuilder->build($option);
-                }else {
-                    if (is_string($index) || is_array($option)) {
-                        $this->output = $this->concateTheCommas($index, $option);
-                    } else {
-                        $this->output = $option;
-                    }
+                }elseif (is_string($index) || is_array($option)) {
+                    $this->output = $this->concateTheCommas($index, $option);
+                } else {
+                    $this->output = $option;
                 }
                 $this->setOutput($this->output);
             }
@@ -70,8 +63,5 @@ class INSERT implements CommandsInterface
 
     }
 
-    public function __destruct()
-    {
-        // TODO: Implement __destruct() method.
-    }
+    
 }

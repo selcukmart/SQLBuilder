@@ -2,6 +2,10 @@
 
 You can use this library for creating sql over sql array
 
+```
+composer require sqlbuilder
+```
+
 Supported only SELECT,INSERT, UPDATE, DELETE; others are planned. You can build unlimitted subqueries.
 
 ```

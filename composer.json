@@ -1,9 +1,8 @@
 {
   "name": "selcukmart/sqlbuilder",
-  "description": "You can use this library for creating sql over sql array\n\n",
+  "description": "You can use this library for creating sql over sql array",
   "minimum-stability": "stable",
   "type": "library",
-  "version": "1.0.0",
   "license": "MIT",
   "authors": [
     {

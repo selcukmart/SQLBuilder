@@ -1,7 +1,8 @@
 {
   "name": "selcukmart/sqlbuilder",
   "description": "You can use this library for creating sql over sql array\n\n",
-  "minimum-stability": "stable",
+  "minimum-stability": "dev",
+  "type": "library",
   "version": "1.0.0",
   "license": "MIT",
   "authors": [
@@ -19,7 +20,7 @@
     ]
   },
   "require": {
-    "php": "^7.1 || ^8.0",
+    "php": ">=7.0.0",
     "brick/varexporter": "~0.3.5",
     "jdorn/sql-formatter": "~1.2.16",
     "phpmyadmin/sql-parser": "~5.5.0"

@@ -36,6 +36,9 @@ $sql_generator = [
     * optional, for more builders on same way
     */
     'id'=>123,
+    /**
+    * Select array
+    */
     [
         'type' => 'SELECT',        
         'c',
@@ -43,13 +46,13 @@ $sql_generator = [
         'a' => '*',
         'b' => 'sube_id,ana_yetki_id,ad AS KUL_AD,soyad AS KUL_SOYAD',
         'bx' => [
-        'sube_id',
-        'ana_yetki_id',
-        'ad AS KUL_AD',
-        'soyad AS KUL_SOYAD',
+        'branch_id',
+        'auth_id',
+        'name AS USER_NAME',
+        'surname AS USER_surNAME',
         ],
-        'c' => 'isim ODEME_SECENEKLERI',
-        'd' => 'isim AS KARGO_FIRMASI',
+        'c' => 'name PAYMENT_OPTION',
+        'd' => 'name AS CARGO_FIRM',
         [
             [
                 'type' => 'SELECT',
@@ -93,17 +96,12 @@ $sql_generator = [
                 'BBB'
             ]
         ],
-        'e' => 'id AS INVOICE_ID, parasut_fatura_id,
-        e_fatura_or_arsiv,
-        parasut_e_fatura_id,
+        'e' => 'id AS INVOICE_ID, x_firm_invoice_id,       
         trackable_job_id,
         status,
         proccess_status,
         sent,
-        pdf_url,
-        kargo_gonderildi,
-        kargo_firmasina_bildirildi,
-        bildirim_tarihi',
+        pdf_url,       
         'd.x',
         'c.y',
         'j'
@@ -247,7 +245,7 @@ echo $sql->getOutput();
 
 ### Joins usage;
 
-> Order is very important!!(Sıra önemlidir!)
+> Order is very important!!
 >
 > Example;
 >

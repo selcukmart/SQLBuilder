@@ -4,6 +4,9 @@
   "minimum-stability": "stable",
   "type": "library",
   "license": "MIT",
+  "config": {
+    "platform-check": false
+  },
   "authors": [
     {
       "name": "Selcuk Mart",
@@ -19,12 +22,11 @@
     ]
   },
   "require": {
-    "php": ">=7.0.0",
     "brick/varexporter": "~0.3.5",
     "jdorn/sql-formatter": "~1.2.16",
-    "phpmyadmin/sql-parser": "~5.5.0"
-  }
-  ,
+    "phpmyadmin/sql-parser": "~5.5.0",
+    "phpunit/phpunit": "^9.5"
+  },
   "require-dev": {
     "roave/security-advisories": "dev-latest"
   }

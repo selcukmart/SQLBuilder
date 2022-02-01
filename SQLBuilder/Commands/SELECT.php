@@ -36,7 +36,6 @@ class SELECT extends AbstractCommands implements CommandsInterface
             if ($this->total !== $this->i) {
                 $this->output .= ', ';
             }
-            $this->output .= 'company_id,';
             $this->setOutput($this->output);
         }
 

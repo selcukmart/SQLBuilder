@@ -15,10 +15,10 @@
   ],
   "autoload": {
     "psr-4": {
-      "SelcukMart\\": "SelcukMart/"
+      "SelcukMart\\": "SQLBuilder/"
     },
     "files": [
-      "SelcukMart/helpers.php"
+      "SQLBuilder/helpers.php"
     ]
   },
   "require": {

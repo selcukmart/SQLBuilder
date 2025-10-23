@@ -1,33 +1,79 @@
 {
   "name": "selcukmart/sqlbuilder",
-  "description": "You can use this library for creating sql over sql array",
+  "description": "Modern PHP 8.1+ SQL query builder with fluent interface for Laravel, Symfony and standalone use",
+  "keywords": ["sql", "query builder", "database", "fluent", "laravel", "symfony", "php8"],
   "minimum-stability": "stable",
   "type": "library",
   "license": "MIT",
   "config": {
-    "platform-check": false
+    "platform-check": true,
+    "sort-packages": true,
+    "optimize-autoloader": true,
+    "preferred-install": "dist"
   },
   "authors": [
     {
       "name": "Selcuk Mart",
-      "email": "admin@hostingdevi.com"
+      "email": "admin@hostingdevi.com",
+      "role": "Developer"
     }
   ],
   "autoload": {
     "psr-4": {
+      "SelcukMart\\SQLBuilder\\": "src/",
       "SelcukMart\\": "SQLBuilder/"
     },
     "files": [
       "SQLBuilder/helpers.php"
     ]
   },
+  "autoload-dev": {
+    "psr-4": {
+      "SelcukMart\\SQLBuilder\\Tests\\": "tests/"
+    }
+  },
   "require": {
-    "brick/varexporter": "~0.3.5",
-    "jdorn/sql-formatter": "~1.2.16",
-    "phpmyadmin/sql-parser": "~5.5.0",
-    "phpunit/phpunit": "^9.5"
+    "php": "^8.1",
+    "brick/varexporter": "^0.4",
+    "doctrine/sql-formatter": "^1.2",
+    "phpmyadmin/sql-parser": "^5.9"
   },
   "require-dev": {
-    "roave/security-advisories": "dev-latest"
+    "phpunit/phpunit": "^10.5",
+    "roave/security-advisories": "dev-latest",
+    "phpstan/phpstan": "^1.10",
+    "phpstan/phpstan-strict-rules": "^1.5",
+    "psalm/plugin-phpunit": "^0.19",
+    "vimeo/psalm": "^5.20",
+    "squizlabs/php_codesniffer": "^3.8",
+    "friendsofphp/php-cs-fixer": "^3.47"
+  },
+  "suggest": {
+    "illuminate/database": "For Laravel integration (^10.0|^11.0)",
+    "symfony/doctrine-bridge": "For Symfony integration (^6.4|^7.0)"
+  },
+  "scripts": {
+    "test": "phpunit",
+    "test-coverage": "phpunit --coverage-html coverage",
+    "phpstan": "phpstan analyse src tests --level=8",
+    "psalm": "psalm",
+    "cs-check": "php-cs-fixer fix --dry-run --diff",
+    "cs-fix": "php-cs-fixer fix",
+    "quality": [
+      "@phpstan",
+      "@psalm",
+      "@cs-check",
+      "@test"
+    ]
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "SelcukMart\\SQLBuilder\\Laravel\\SQLBuilderServiceProvider"
+      ],
+      "aliases": {
+        "SQLBuilder": "SelcukMart\\SQLBuilder\\Laravel\\Facades\\SQLBuilder"
+      }
+    }
   }
 }

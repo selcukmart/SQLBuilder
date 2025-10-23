@@ -1,25 +1,51 @@
 <?php
+
+declare(strict_types=1);
+
 /**
+ * Helper functions for SQLBuilder legacy support
+ *
  * @author selcukmart
- * 31.01.2022
- * 14:51
+ * @since 1.0
+ * @deprecated These functions are maintained for backward compatibility only
  */
 
-function _sizeof($data): int
+/**
+ * Count elements safely with proper type safety
+ *
+ * @param mixed $data
+ * @return int
+ */
+function _sizeof(mixed $data): int
 {
-    if ((PHP_VERSION_ID > 70300) && is_countable($data)) {
+    if (is_countable($data)) {
         return count($data);
     }
-    return is_array($data) ? count($data) : false;
+
+    if (is_array($data)) {
+        return count($data);
+    }
+
+    return 0;
 }
 
-function c($v, $return = false)
+/**
+ * Debug output function
+ *
+ * @param mixed $v
+ * @param bool $return
+ * @return string|null
+ */
+function c(mixed $v, bool $return = false): ?string
 {
+    $output = '';
+
     if ($return) {
         $output = '<pre>';
     } else {
         echo '<pre>';
     }
+
     if (is_array($v) || is_object($v)) {
         if ($return) {
             $output .= print_r($v, true);
@@ -27,16 +53,18 @@ function c($v, $return = false)
             print_r($v);
         }
     } elseif ($return) {
-        $output .= $v;
+        $output .= (string) $v;
     } elseif (is_bool($v)) {
         var_dump($v);
     } else {
         echo $v;
     }
+
     if ($return) {
         $output .= '</pre>';
         return $output;
     }
 
     echo '</pre>';
+    return null;
 }

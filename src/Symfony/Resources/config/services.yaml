@@ -1,0 +1,20 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
+
+    SelcukMart\SQLBuilder\SQLBuilder:
+        public: true
+
+    SelcukMart\SQLBuilder\Builder\QueryBuilder:
+        public: true
+
+    SelcukMart\SQLBuilder\Builder\InsertBuilder:
+        public: true
+
+    SelcukMart\SQLBuilder\Builder\UpdateBuilder:
+        public: true
+
+    SelcukMart\SQLBuilder\Builder\DeleteBuilder:
+        public: true
